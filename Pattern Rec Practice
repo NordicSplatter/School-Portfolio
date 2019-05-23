@@ -1,0 +1,85 @@
+import re
+cerseiSpeech = " The Mad King's daughter has ferried an army of savages to\n " \
+               "our shores, mindless unsullied soldiers who would destroy\n " \
+               "your castles and your holdfasts, Dothraki heathens who\n " \
+               "will burn your villages to the ground, rape and enslave\n " \
+               "your women, and butcher your children without a second\n " \
+               "thought... You remember the mad king, you remember the\n " \
+               "horrors he inflicted on his people. His daughter is no\n " \
+               "different. In Essos her brutality is already legendary.\n " \
+               "She crucified hundreds of noblemen in Slavers Bay. And\n " \
+               "when she got bored of that, she fed them to her dragons.\n " \
+               "It is my solemn duty to protect the people and I will, but\n " \
+               "I need your help my lords. We must stand together, all of\n " \
+               "us, if we hope to stop her."
+        
+if re.match('Mad', cerseiSpeech):
+    print('pattern found!')
+else:
+    print('No pattern')
+#this type of pattern  match only checks the beginning of the variable thus why 'Mad' failed but 'The' will pass
+if re.match('The', cerseiSpeech):
+    print('Pattern found!')
+else: 
+    print('you typed something wrong')
+
+# to locate past the first item in the variable use the search method instead of match
+if re.search('Mad', cerseiSpeech):
+    print('Pattern found!')
+else:
+    print('You typed something wrong 2')
+#example again the reinforce the idea
+if re.search('legendary', cerseiSpeech):
+    print('Pattern found once again!')
+else:
+    print('You typed something wrong 3')
+    
+#locating all instances of a particular item in a string 
+result = re.findall('is', cerseiSpeech)
+print(result)
+
+#
+pattern1 = 'I '
+pattern2 = 'your'
+pattern3 = 'we'
+results1 = re.findall(pattern1, cerseiSpeech)
+results2 = re.findall(pattern2, cerseiSpeech)
+results3 = re.findall(pattern3, cerseiSpeech)
+print('Cersei used ', pattern1, len(results1), ' times and she used ', pattern2, ' and ', pattern3, len(results2 + results3), ' times')
+if len(results2 + results3) >= len(results1):
+    print('That is hardly the sign of a selfish ruler!\n')
+else:
+    print('We should be worried, she cares only for herself')
+    
+results1 = re.sub('her', 'HER', cerseiSpeech)
+results2 = re.sub('she', 'SHE', results1)
+print(results2)
+
+#opening files
+# 'r' for read only
+# 'w' write mode(creates new file, overwrites existing file)
+# 'x' write mode for only a few files
+# 'a' append mode creates now file or adds to the end of an existing file
+# ourVariable = open(filename, mode)
+# myFile = open(‘sfoglitelle’, ‘wt’)
+# myFile.write(secretRecipe)
+# myFile.close()
+
+print(re.split(r'\s','Corey is awesome!\n'))
+print(re.split(r'!', 'Corey! has a !selection of !silly socks'))
+#'r' is for regular expression in this context
+str1 = 'Hello World!!'
+match = re.search(r'o\w\w', str1)
+if match:
+    print('\nFound')
+else:
+    print('Did not find')
+# this is to find a particular element in a string and print it
+str2 = 'This is a test I think abcd@gmail.com'
+statement = re.findall(r'\w@', str2)
+for i in statement:
+    print(i)
+# adding '+' to the w is an infinite symbol. it will run to the nearest space or number
+statement = re.findall(r'\w+@\w+', str2)
+for i in statement:
+    print(i)
