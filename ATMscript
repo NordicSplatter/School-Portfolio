@@ -1,0 +1,42 @@
+#written by Cody EB
+#https://github.com/NordicSplatter
+
+import sys
+
+#account balance 
+account_balance = float(500.25)
+
+
+def printbalance(): #account balance 
+  print("Your current balance:  %2g"% account_balance)
+
+
+
+def deposit(): #total after deposit
+  deposit_amount = float(input()) #user input deposit
+  balance = account_balance + deposit_amount #equation to sum account balance
+  print("Deposit was $%.2f, current balance is $%2g" %(deposit_amount, balance)) #print customer deposit and balance after
+
+
+
+def withdraw():  #withdraw amount 
+  withdraw_amount = float(input()) #user input withdraw
+  if(withdraw_amount > account_balance): 
+    print("$%.2f is greater than your account balance of $%.2f\n" %(withdraw_amount, account_balance))  #print following message
+  else: 
+    balance = account_balance - withdraw_amount #calculation balance to display withdraw amount
+    print("Withdrawal amount was $%.2f, current balance is $%.2f" % (withdraw_amount, balance))
+
+
+userchoice = input ("What would you like to do?\n")
+if (userchoice == 'D'): #deposit
+  print('How much would you like to deposit today?')
+  deposit()
+elif userchoice == 'W': #withdraw
+  print('How much would you like to withdraw today?')
+  withdraw()
+elif userchoice == 'B': #balance
+  printbalance()
+else:
+  print("Thank you for banking with us.")
+  sys.exit()
